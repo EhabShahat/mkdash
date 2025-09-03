@@ -270,18 +270,18 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex-1">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
                 Volunteer Dashboard
               </h1>
-              <div className="flex items-center gap-4 mt-1">
-                <p className="text-gray-600">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-1">
+                <p className="text-gray-600 text-sm sm:text-base">
                   Manage tasks and volunteers
                 </p>
                 <div className={`
-                  flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium
+                  flex items-center gap-2 px-3 py-1 rounded-full text-xs sm:text-sm font-medium w-fit
                   ${fingerprintingEnabled 
                     ? 'bg-green-100 text-green-700' 
                     : 'bg-orange-100 text-orange-700'
@@ -289,58 +289,65 @@ export default function Dashboard() {
                 `}>
                   {fingerprintingEnabled ? (
                     <>
-                      <Shield size={14} />
-                      One task per kid
+                      <Shield size={12} className="sm:w-[14px] sm:h-[14px]" />
+                      <span className="hidden sm:inline">One task per kid</span>
+                      <span className="sm:hidden">1 task/kid</span>
                     </>
                   ) : (
                     <>
-                      <ShieldOff size={14} />
-                      Multiple tasks allowed
+                      <ShieldOff size={12} className="sm:w-[14px] sm:h-[14px]" />
+                      <span className="hidden sm:inline">Multiple tasks allowed</span>
+                      <span className="sm:hidden">Multi tasks</span>
                     </>
                   )}
                 </div>
               </div>
             </div>
             
-            <div className="flex gap-3">
+            {/* Mobile Action Buttons */}
+            <div className="flex flex-wrap gap-2 sm:gap-3">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={exportAllTasksData}
-                className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-xl font-medium transition-colors"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium transition-colors"
               >
-                <Download size={20} />
-                Export All Tasks
+                <Download size={16} className="sm:w-5 sm:h-5" />
+                <span className="hidden sm:inline">Export All Tasks</span>
+                <span className="sm:hidden">Export</span>
               </motion.button>
               
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowSettings(true)}
-                className="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-xl font-medium transition-colors"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium transition-colors"
               >
-                <Settings size={20} />
-                Settings
+                <Settings size={16} className="sm:w-5 sm:h-5" />
+                <span className="hidden sm:inline">Settings</span>
+                <span className="sm:hidden">Settings</span>
               </motion.button>
               
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowAddTask(true)}
-                className="flex items-center gap-2 px-4 py-2 btn-primary text-white rounded-xl font-medium"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 btn-primary text-white rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium"
               >
-                <Plus size={20} />
-                Add Task
+                <Plus size={16} className="sm:w-5 sm:h-5" />
+                <span className="hidden sm:inline">Add Task</span>
+                <span className="sm:hidden">Add</span>
               </motion.button>
               
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleResetEverything}
-                className="flex items-center gap-2 px-4 py-2 btn-danger text-white rounded-xl font-medium"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 btn-danger text-white rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium"
               >
-                <RotateCcw size={20} />
-                Reset All
+                <RotateCcw size={16} className="sm:w-5 sm:h-5" />
+                <span className="hidden sm:inline">Reset All</span>
+                <span className="sm:hidden">Reset</span>
               </motion.button>
             </div>
           </div>
@@ -348,10 +355,10 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-200px)]">
+      <div className="max-w-7xl mx-auto p-2 sm:p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 min-h-[calc(100vh-180px)] sm:min-h-[calc(100vh-200px)]">
           {/* Task List */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 order-2 lg:order-1">
             <TaskList
               tasks={tasks}
               volunteers={volunteers}
@@ -364,7 +371,7 @@ export default function Dashboard() {
           </div>
 
           {/* Task Details */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 order-1 lg:order-2">
             {selectedTask ? (
               <TaskDetails
                 task={selectedTask}
@@ -373,11 +380,14 @@ export default function Dashboard() {
                 onUpdateTask={handleUpdateTask}
               />
             ) : (
-              <div className="bg-white rounded-2xl p-8 text-center">
-                <div className="text-6xl mb-4">📋</div>
-                <h3 className="text-xl font-semibold text-gray-600">
+              <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center">
+                <div className="text-4xl sm:text-6xl mb-4">📋</div>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-600">
                   Select a task to view details
                 </h3>
+                <p className="text-sm text-gray-500 mt-2 lg:hidden">
+                  Scroll down to see task list
+                </p>
               </div>
             )}
           </div>
