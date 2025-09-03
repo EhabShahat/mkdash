@@ -19,6 +19,9 @@ export type Volunteer = {
   name: string
   device_fingerprint: string
   created_at: string
+  tasks?: {
+    name: string
+  }
 }
 
 export type AppSetting = {
